@@ -97,8 +97,9 @@ fun NdejjeUniversityID() {
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.elevatedCardColors(containerColor = Color.White)
+
     ) {
-        Box {
+        Box(modifier = Modifier.aspectRatio(1.000f)) {
             // Edge-to-edge maroon band background
             Box(
                 modifier = Modifier
@@ -125,12 +126,17 @@ fun NdejjeUniversityID() {
                     Surface(
                         shape = CircleShape,
                         color = Color.White,
-                        modifier = Modifier.size(90.dp)
+                        modifier = Modifier
+                            .offset(y = 20.dp)
+
+                            .size(100.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.logo),
                             contentDescription = "NDU Logo",
-                            modifier = Modifier.padding(10.dp),
+                            modifier = Modifier
+                                .offset(y = 20.dp)
+                                .padding(5.dp),
                             contentScale = ContentScale.Fit
                         )
                     }
@@ -187,7 +193,7 @@ fun NdejjeUniversityID() {
                     fontWeight = FontWeight.Black,
                     color = Color.Black
                 )
-                
+
                 // [✓] Typography: FontWeight.Bold for labels
                 Text(
                     text = buildAnnotatedString {
@@ -199,7 +205,7 @@ fun NdejjeUniversityID() {
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.DarkGray
                 )
-                
+
                 Text(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
