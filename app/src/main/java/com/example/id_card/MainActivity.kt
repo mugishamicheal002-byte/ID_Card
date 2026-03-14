@@ -76,7 +76,7 @@ fun DynamicBarcode(regNumber: String) {
             contentDescription = "Student Barcode",
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .height(45.dp),
+                .height(40.dp),
             contentScale = ContentScale.FillBounds
         )
     }
@@ -87,9 +87,8 @@ fun DynamicBarcode(regNumber: String) {
 @Composable
 fun NdejjeUniversityID() {
     val maroonColor = Color(0xFF800000)
-    val regNo = "24/S/1234/AS"
+    val regNo = "24/2/306/D/049"
 
-    // [✓] The Outer Shell: ElevatedCard, RoundedCornerShape(16.dp), elevation 8.dp
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -97,78 +96,72 @@ fun NdejjeUniversityID() {
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.elevatedCardColors(containerColor = Color.White)
-
     ) {
-        Box(modifier = Modifier.aspectRatio(1.000f)) {
-            // Edge-to-edge maroon band background
+        Box(modifier = Modifier.aspectRatio(1.586f)) {
+            // Top maroon band
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(115.dp)
+                    .height(70.dp)
                     .background(maroonColor)
             )
 
-            // [✓] The Main Container: Column, horizontalAlignment = CenterHorizontally, padding 16.dp
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                    .fillMaxSize()
+                    .padding(12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-                // [✓] The Header Row: SpaceBetween pushes Logo left and Flag right
+                // Header Row
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.Top
                 ) {
-                    // NDU Logo in white circular surface
-                    Surface(
-                        shape = CircleShape,
-                        color = Color.White,
+                    // [✓] NDU Logo - White oval background overlapping the maroon band
+                    Box(
                         modifier = Modifier
-                            .offset(y = 20.dp)
-
-                            .size(100.dp)
+                            .align(Alignment.Bottom)
+                            .width(85.dp)
+                            .height(100.dp)
+                            .background(Color.White, CircleShape)
+                            .clip(CircleShape),
+                        contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.logo),
                             contentDescription = "NDU Logo",
                             modifier = Modifier
-                                .offset(y = 20.dp)
-                                .padding(5.dp),
+                                .size(115.dp)
+                                .offset(y = (-10).dp),
                             contentScale = ContentScale.Fit
                         )
                     }
 
-                    // [✓] The Photo Stack: Box with Student Photo + Watermark Logo
+                    // [✓] Photo Stack
                     Box(contentAlignment = Alignment.Center) {
-                        // Outer maroon ring
                         Box(
                             modifier = Modifier
-                                .size(138.dp)
+                                .size(85.dp)
                                 .background(maroonColor, CircleShape)
                         )
-                        // Photo container
-                        Box(modifier = Modifier.size(130.dp)) {
-                            // Bottom layer: Student Photo clipped to circle
+                        Box(modifier = Modifier.size(78.dp)) {
                             Image(
                                 painter = painterResource(id = R.drawable.mine1),
                                 contentDescription = "Student Photo",
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .clip(CircleShape)
-                                    .border(4.dp, Color.White, CircleShape),
+                                    .border(2.dp, Color.White, CircleShape),
                                 contentScale = ContentScale.Crop
                             )
-                            // Top layer: NDU logo watermark aligned to BottomEnd
                             Image(
                                 painter = painterResource(id = R.drawable.logo),
                                 contentDescription = "Watermark",
                                 modifier = Modifier
-                                    .size(32.dp)
+                                    .size(20.dp)
                                     .align(Alignment.BottomEnd)
-                                    .padding(bottom = 6.dp, end = 6.dp)
+                                    .padding(bottom = 2.dp, end = 2.dp)
                                     .alpha(0.85f)
                             )
                         }
@@ -179,22 +172,20 @@ fun NdejjeUniversityID() {
                         painter = painterResource(id = R.drawable.uganda_flag),
                         contentDescription = "Flag",
                         modifier = Modifier
-                            .padding(top = 10.dp)
-                            .size(70.dp, 45.dp)
+                            .padding(top = 8.dp)
+                            .size(55.dp, 35.dp)
                     )
                 }
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(4.dp))
 
-                // [✓] Typography: headlineSmall for student's name
                 Text(
-                    text = "ATUHAIRE BRENDA",
-                    style = MaterialTheme.typography.headlineSmall,
+                    text = "MUGISHA MICHEAL",
+                    style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Black,
                     color = Color.Black
                 )
 
-                // [✓] Typography: FontWeight.Bold for labels
                 Text(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
@@ -202,70 +193,54 @@ fun NdejjeUniversityID() {
                         }
                         append("BSc in Computer Science")
                     },
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodySmall,
                     color = Color.DarkGray
                 )
 
                 Text(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                            append("Registration Number: ")
+                            append("REG NO: ")
                         }
                         append(regNo)
                     },
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodySmall,
                     color = Color.Black
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.weight(1f))
 
-                // [✓] The Footer: HorizontalDivider() followed by dates and barcode
-                HorizontalDivider(
-                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                    color = Color.LightGray
-                )
+                HorizontalDivider(color = Color.LightGray)
 
-                Row {
+                Row(modifier = Modifier.padding(vertical = 2.dp)) {
                     Text(
                         text = buildAnnotatedString {
                             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                append("Date of Issue: ")
+                                append("Issue: ")
                             }
                             append("01/02/2026   ")
                         },
-                        fontSize = 11.sp
+                        fontSize = 9.sp
                     )
                     Text(
                         text = buildAnnotatedString {
                             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                append("Expiry Date: ")
+                                append("Expiry: ")
                             }
                             append("01/02/2029")
                         },
-                        fontSize = 11.sp
+                        fontSize = 9.sp
                     )
                 }
 
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Placeholder/Implementation for the barcode
                 DynamicBarcode(regNo)
-
-                Text(
-                    text = regNo,
-                    fontSize = 10.sp,
-                    letterSpacing = 2.sp,
-                    modifier = Modifier.padding(top = 2.dp)
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
             }
 
-            // Decorative bottom maroon band
+            // Bottom decorative band
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(8.dp)
+                    .height(4.dp)
                     .background(maroonColor)
                     .align(Alignment.BottomCenter)
             )
