@@ -87,7 +87,7 @@ fun DynamicBarcode(regNumber: String) {
 @Composable
 fun NdejjeUniversityID() {
     val maroonColor = Color(0xFF800000)
-    val regNo = "24/2/306/D/049"
+    val regNo = "24/S/1234/AS"
 
     ElevatedCard(
         modifier = Modifier
@@ -98,32 +98,49 @@ fun NdejjeUniversityID() {
         colors = CardDefaults.elevatedCardColors(containerColor = Color.White)
     ) {
         Box(modifier = Modifier.aspectRatio(1.586f)) {
+
+            // [✓] Faded Watermarks (Background logos)
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(160.dp)
+                    .align(Alignment.BottomStart)
+                    .offset(x = (-45).dp, y = 35.dp)
+                    .alpha(0.06f)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(160.dp)
+                    .align(Alignment.BottomEnd)
+                    .offset(x = 45.dp, y = 35.dp)
+                    .alpha(0.06f)
+            )
+
             // Top maroon band
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .height(75.dp)
                     .background(maroonColor)
             )
 
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(12.dp),
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Header Row
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.Top
-                ) {
-                    // [✓] NDU Logo - White oval background overlapping the maroon band
+                // Header Area Box - allows precise bottom alignment to reduce space to name
+                Box(modifier = Modifier.fillMaxWidth().height(110.dp)) {
+                    // [✓] NDU Logo Oval Background
                     Box(
                         modifier = Modifier
-                            .align(Alignment.Bottom)
+                            .align(Alignment.BottomStart)
                             .width(85.dp)
-                            .height(100.dp)
+                            .height(105.dp)
                             .background(Color.White, CircleShape)
                             .clip(CircleShape),
                         contentAlignment = Alignment.Center
@@ -138,52 +155,56 @@ fun NdejjeUniversityID() {
                         )
                     }
 
-                    // [✓] Photo Stack
-                    Box(contentAlignment = Alignment.Center) {
+                    // [✓] Photo Stack - Positioned at BottomCenter of header area
+                    Box(
+                        modifier = Modifier.align(Alignment.BottomCenter),
+                        contentAlignment = Alignment.Center
+                    ) {
                         Box(
                             modifier = Modifier
-                                .size(85.dp)
+                                .size(105.dp)
                                 .background(maroonColor, CircleShape)
                         )
-                        Box(modifier = Modifier.size(78.dp)) {
+                        Box(modifier = Modifier.size(98.dp)) {
                             Image(
                                 painter = painterResource(id = R.drawable.mine1),
                                 contentDescription = "Student Photo",
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .clip(CircleShape)
-                                    .border(2.dp, Color.White, CircleShape),
+                                    .border(3.dp, Color.White, CircleShape),
                                 contentScale = ContentScale.Crop
                             )
                             Image(
                                 painter = painterResource(id = R.drawable.logo),
                                 contentDescription = "Watermark",
                                 modifier = Modifier
-                                    .size(20.dp)
+                                    .size(24.dp)
                                     .align(Alignment.BottomEnd)
-                                    .padding(bottom = 2.dp, end = 2.dp)
+                                    .padding(bottom = 4.dp, end = 4.dp)
                                     .alpha(0.85f)
                             )
                         }
                     }
 
-                    // Ugandan Flag
+                    // Ugandan Flag - Top Right
                     Image(
                         painter = painterResource(id = R.drawable.uganda_flag),
                         contentDescription = "Flag",
                         modifier = Modifier
+                            .align(Alignment.TopEnd)
                             .padding(top = 8.dp)
-                            .size(55.dp, 35.dp)
+                            .size(65.dp, 40.dp)
                     )
                 }
 
-                Spacer(modifier = Modifier.height(4.dp))
-
+                // Tight space between photo and name
                 Text(
-                    text = "MUGISHA MICHEAL",
-                    style = MaterialTheme.typography.titleMedium,
+                    text = "ATUHAIRE BRENDA",
+                    style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Black,
-                    color = Color.Black
+                    color = Color.Black,
+                    modifier = Modifier.padding(top = 4.dp)
                 )
 
                 Text(
@@ -200,7 +221,7 @@ fun NdejjeUniversityID() {
                 Text(
                     text = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                            append("REG NO: ")
+                            append("Registration Number: ")
                         }
                         append(regNo)
                     },
@@ -216,7 +237,7 @@ fun NdejjeUniversityID() {
                     Text(
                         text = buildAnnotatedString {
                             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                append("Issue: ")
+                                append("Date of Issue: ")
                             }
                             append("01/02/2026   ")
                         },
@@ -225,7 +246,7 @@ fun NdejjeUniversityID() {
                     Text(
                         text = buildAnnotatedString {
                             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                append("Expiry: ")
+                                append("Expiry Date: ")
                             }
                             append("01/02/2029")
                         },
