@@ -57,7 +57,7 @@ fun generateBarcode(text: String, width: Int, height: Int): Bitmap? {
             for (y in 0 until height) {
                 bitmap.setPixel(
                     x, y,
-                    if (bitMatrix.get(x, y)) android.graphics.Color.BLACK else android.graphics.Color.WHITE
+                    if (bitMatrix.get(x, y)) android.graphics.Color.BLACK else android.graphics.Color.TRANSPARENT
                 )
             }
         }
@@ -75,8 +75,8 @@ fun DynamicBarcode(regNumber: String) {
             bitmap = it.asImageBitmap(),
             contentDescription = "Student Barcode",
             modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .height(40.dp),
+                .fillMaxWidth(0.7f)
+                .height(25.dp),
             contentScale = ContentScale.FillBounds
         )
     }
@@ -87,7 +87,7 @@ fun DynamicBarcode(regNumber: String) {
 @Composable
 fun NdejjeUniversityID() {
     val maroonColor = Color(0xFF800000)
-    val regNo = "24/S/1234/AS"
+    val regNo = "24/2/306/D/049"
 
     ElevatedCard(
         modifier = Modifier
@@ -97,25 +97,25 @@ fun NdejjeUniversityID() {
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.elevatedCardColors(containerColor = Color.White)
     ) {
-        Box(modifier = Modifier.aspectRatio(1.586f)) {
+        Box(modifier = Modifier.aspectRatio(1.486f)) {
 
             // [✓] Faded Watermarks (Background logos)
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(160.dp)
+                    .size(140.dp)
                     .align(Alignment.BottomStart)
-                    .offset(x = (-45).dp, y = 35.dp)
+                    .offset(x = (-40).dp, y = -10.dp)
                     .alpha(0.06f)
             )
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(160.dp)
+                    .size(140.dp)
                     .align(Alignment.BottomEnd)
-                    .offset(x = 45.dp, y = 35.dp)
+                    .offset(x = 40.dp, y = -10.dp)
                     .alpha(0.06f)
             )
 
@@ -200,11 +200,11 @@ fun NdejjeUniversityID() {
 
                 // Tight space between photo and name
                 Text(
-                    text = "ATUHAIRE BRENDA",
+                    text = "MUGISHA MICHEAL",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Black,
                     color = Color.Black,
-                    modifier = Modifier.padding(top = 4.dp)
+                    modifier = Modifier.padding(top = 1.dp)
                 )
 
                 Text(
@@ -215,7 +215,7 @@ fun NdejjeUniversityID() {
                         append("BSc in Computer Science")
                     },
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color.DarkGray
+                    color = Color.Black
                 )
 
                 Text(
@@ -231,9 +231,10 @@ fun NdejjeUniversityID() {
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                HorizontalDivider(color = Color.LightGray)
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 24.dp),
+                    color = Color.LightGray)
 
-                Row(modifier = Modifier.padding(vertical = 2.dp)) {
+                Row(modifier = Modifier.padding(horizontal = 24.dp, vertical = 2.dp)) {
                     Text(
                         text = buildAnnotatedString {
                             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
@@ -243,6 +244,7 @@ fun NdejjeUniversityID() {
                         },
                         fontSize = 9.sp
                     )
+                    Spacer(modifier = Modifier.weight(1f))
                     Text(
                         text = buildAnnotatedString {
                             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
